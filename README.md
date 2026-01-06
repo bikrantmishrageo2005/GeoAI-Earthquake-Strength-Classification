@@ -1,92 +1,82 @@
-# GeoAI-Earthquake-Strength-Classification
-
 📌 Overview
 
-This project explores the use of Machine Learning and Geospatial Analysis to study historical earthquake data and learn spatial patterns of seismic activity.
-Using data retrieved from the USGS Earthquake API, the model classifies earthquakes into Weak and Strong categories based on their geographic attributes.
-
-
-⚠️ Important Note
-
-This project does NOT claim deterministic earthquake prediction.
-The term “prediction” is used strictly in a machine-learning sense, referring to post-event classification and pattern learning from historical seismic records.
+This project explores the application of Machine Learning and Geo-Spatial Analysis to classify earthquake strength using historical seismic data. The study integrates geological reasoning with data-driven methods to understand how spatial location and focal depth influence earthquake energy release patterns.
+The work is designed as an exploratory GeoAI mini-project, suitable for academic portfolios and graduate-level research preparation.
 
 
 🎯 Objectives
 
-To analyze global and regional earthquake datasets using data-driven methods
-To understand spatial distribution of seismic events
-To classify earthquake strength using machine learning models
-To visualize seismic risk patterns using geospatial maps
+Analyze global earthquake data using machine learning techniques
+Classify earthquakes into Weak and Strong categories
+Investigate the influence of spatial clustering and depth on seismic strength
+Apply model explainability to validate geological reasoning behind predictions
 
 
 🗂 Data Source
 
 United States Geological Survey (USGS) Earthquake API
-Parameters include:
-Latitude & Longitude
+Parameters used:
+Latitude
+Longitude
+Focal depth (km)
 Magnitude
-Depth
-Time & Date
-All data used in this project is open-source and publicly available.
+Time of occurrence
+All data used are open-source and publicly available.
 
 
 🧠 Methodology
 
-Data collection using USGS API
+Retrieval of historical earthquake data using the USGS API
 Data cleaning and preprocessing
-Feature engineering (time, depth, spatial attributes)
-Exploratory Data Analysis (EDA)
-Machine Learning model development:
-Classification (Weak vs Strong)
-Regression (magnitude estimation for analysis)
-Model evaluation using accuracy, confusion matrix, and R² (where applicable)
-Geospatial visualization using maps
+Feature selection using spatial coordinates and focal depth
+Earthquake strength classification using a Random Forest model
+Handling class imbalance with balanced class weighting
+Model robustness assessment using Stratified K-Fold Cross-Validation
+Model interpretability using SHAP (SHapley Additive exPlanations)
+Geological visualization using spatial maps and seismic cross-sections
 
 
 🛠 Tools & Technologies
 
 Python
 Pandas, NumPy
-Scikit-learn
+Scikit-Learn
+SHAP
 Matplotlib, Seaborn
 Folium (Geospatial Visualization)
-Google Colab / Jupyter Notebook
 
 
-🌍 Study Regions
+📊 Results & Visualizations
 
-Global earthquake dataset
-India-focused analysis
-Regional case studies (Delhi, Odisha, Bhubaneswar, Berhampur)
-
-⚠️ Regional models may suffer from data sparsity due to low seismic activity and are included as proof-of-concept demonstrations, not as statistically robust predictors.
-
-
-📊 Results & Insights
-
-The global model demonstrates meaningful learning of spatial seismic patterns
-Machine learning models successfully differentiate weak and strong earthquakes based on historical data
-Geospatial maps highlight seismic clustering along tectonically active regions
+Classification of earthquake strength (Weak vs Strong)
+Spatial clustering of strong seismic events along tectonically active regions
+SHAP-based feature importance highlighting the role of depth and spatial location
+Seismic depth–magnitude profile to examine vertical seismicity structure
 
 
-🚀 Limitations
+🧠 Model Discussion and Geological Interpretation
 
-Earthquake occurrence is governed by complex physical processes not fully captured by spatial features alone
-Latitude and longitude cannot determine causation, only historical patterns
-Localized regional models are limited by available data
+The model utilizes spatial proxies (latitude and longitude) together with focal depth to classify earthquake strength based on historical seismicity patterns. Latitude and longitude act as indirect indicators of tectonic settings, enabling the Random Forest classifier to learn clustering behavior along major plate boundaries, including circum-Pacific and other globally active seismic belts.
+The inclusion of depth_km plays a critical role in the model’s logic. SHAP-based explainability analysis indicates that focal depth contributes significantly to classification outcomes, reflecting well-established differences between shallow crustal earthquakes and deeper subduction-zone events. These depth-dependent variations are consistent with seismological understanding of brittle upper-crustal failure versus deeper slab-related seismicity.
+To address the natural rarity of large-magnitude earthquakes, balanced class weighting was applied during model training. This prevents bias toward low-magnitude events and allows a more representative classification of seismic energy release patterns. Overall, the model captures geologically meaningful trends rather than relying solely on spatial memorization.
 
 
-🔮 Future Scope
+🌍 Geological Context
 
-Integration of tectonic plate boundaries and fault-line data
-Use of deep learning and spatio-temporal models
-Real-time data streaming for continuous seismic risk monitoring
-Extension toward comprehensive Geo-AI risk assessment systems
+This study interprets seismic classification in the context of the Gutenberg–Richter magnitude–frequency relationship, where high-magnitude earthquakes represent greater energy release but occur less frequently.
+Spatial coordinates serve as surrogates for tectonic boundaries, while focal depth reflects variations in deformation regimes across the lithosphere. The integration of SHAP explainability enables transparent interpretation of how spatial location and depth jointly influence earthquake strength classification, aligning machine-learning outputs with established principles of earthquake generation and tectonic processes.
+
+
+🔮 Scope for Further Improvement
+
+While the current framework is appropriate for a mini-project and exploratory GeoAI study, further enhancements could be introduced at a graduate research or master’s thesis level:
+Tectonic Feature Engineering: Incorporating distance to the nearest plate boundary or fault system using geological or GeoJSON datasets to reduce reliance on latitude–longitude as indirect spatial proxies.
+Spatio-Temporal Features: Introducing temporal variables such as time since the last significant seismic event within a defined spatial radius to better capture seismic recurrence and clustering behavior.
+Such extensions would move the framework toward advanced seismic risk modeling rather than purely spatial classification.
 
 
 👤 Author
 
 Bikrant Kumar Mishra
 B.Sc. Geology
-Interests: Geo-AI, Machine Learning, Earth System Analysis
+Interests: GeoAI, Machine Learning, Seismology, Earth System Analysis
