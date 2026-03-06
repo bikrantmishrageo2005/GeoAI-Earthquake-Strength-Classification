@@ -166,32 +166,14 @@ GeoAI • Machine Learning • Seismology • Earth System Analysis
 ---
 ---
 
-## 🌐 Live Interactive Projects
+---
 
-<p align="center">
+## 🌐 Live Interactive Project
 
-<a href="https://bikrantmishrageo2005.github.io/GeoAI-Earthquake-Strength-Classification/">
+🔵 **GeoAI Earthquake Strength Classification**
 
-🌍 GeoAI Earthquake Strength Classification
+🔗 https://bikrantmishrageo2005.github.io/GeoAI-Earthquake-Strength-Classification/
 
-</a>
-
-<br><br>
-
-<a href="https://bikrantmishrageo2005.github.io/mineral-prospectivity-mapping/">
-
-⛏ GeoAI Mineral Prospectivity Mapping
-
-</a>
-
-<br><br>
-
-<a href="https://bikrantmishrageo2005.github.io/GeoAI-Hydrocarbon-Prospectivity-Modeling/">
-
-🛢 GeoAI Hydrocarbon Prospectivity Modeling
-
-</a>
-
-</p>
+This interactive web page presents the GeoAI earthquake classification project, including global seismic data visualization and machine learning based earthquake strength analysis.
 
 ---
