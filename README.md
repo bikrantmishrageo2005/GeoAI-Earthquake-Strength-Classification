@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Earthquake_icon.svg" width="120">
-</p>
-
 <h1 align="center">
 GeoAI Earthquake Strength Classification
 </h1>
