@@ -8,22 +8,22 @@
 
 <title>GeoAI Earthquake Strength Classification</title>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
 
-/* EARTH BACKGROUND */
+/* BACKGROUND */
 
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
 color:white;
-
 background-image:url("https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
 }
-
-/* DARK OVERLAY */
 
 .overlay{
 background:rgba(0,0,0,0.75);
@@ -33,83 +33,100 @@ min-height:100vh;
 /* HEADER */
 
 header{
-background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
-padding:60px;
 text-align:center;
+padding:100px 20px;
 }
 
 header h1{
-font-size:46px;
-margin-bottom:10px;
+font-size:56px;
+margin-bottom:15px;
+animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #00ffd5; }
+to{ text-shadow:0 0 35px #00ffd5; }
 }
 
 header p{
+font-size:20px;
 color:#d0d0d0;
-font-size:18px;
-}
-
-/* MAIN CONTAINER */
-
-.container{
-width:80%;
-margin:auto;
-padding:40px;
 }
 
 /* SECTION */
 
 .section{
-margin-bottom:60px;
+width:80%;
+margin:40px auto;
+padding:40px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border-radius:15px;
+box-shadow:0 0 30px rgba(0,255,200,0.2);
+text-align:center;
 }
 
 .section h2{
-border-left:5px solid #00ffd5;
-padding-left:12px;
+font-size:34px;
 margin-bottom:20px;
+border-bottom:2px solid #00ffd5;
+display:inline-block;
+padding-bottom:10px;
 }
 
-/* IMAGES */
+.section p{
+font-size:18px;
+line-height:1.7;
+color:#dddddd;
+}
 
-img{
-width:85%;
+/* MAP */
+
+#map{
+height:650px;
+width:100%;
 border-radius:12px;
-box-shadow:0px 0px 25px rgba(0,255,200,0.5);
-margin-top:20px;
+margin-top:30px;
+box-shadow:0 0 40px rgba(0,255,200,0.5);
 }
 
 /* LEGEND */
 
 .legend{
-background:#111;
-padding:15px;
-border-radius:10px;
-width:260px;
 margin-top:20px;
-box-shadow:0px 0px 10px rgba(0,255,200,0.3);
+font-size:16px;
 }
 
-.red{
-color:red;
-font-weight:bold;
-}
+.red{color:red;font-weight:bold;}
+.blue{color:#00bfff;font-weight:bold;}
 
-.blue{
-color:#00bfff;
-font-weight:bold;
+/* OUTPUT IMAGES */
+
+.output img{
+width:80%;
+margin-top:25px;
+border-radius:10px;
+box-shadow:0 0 25px rgba(0,255,200,0.4);
 }
 
 /* BUTTON */
 
-button{
-background:#00ffd5;
-border:none;
-padding:12px 25px;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
+.button{
+margin-top:40px;
 }
 
-button:hover{
+.button a{
+text-decoration:none;
+background:#00ffd5;
+color:black;
+padding:15px 40px;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.button a:hover{
 background:#00c2a5;
 }
 
@@ -143,15 +160,17 @@ Machine Learning • Seismology • Geospatial Analysis
 </header>
 
 
-<div class="container">
-
-
 <div class="section">
 
 <h2>Project Overview</h2>
 
 <p>
-This GeoAI project explores how machine learning and geospatial analysis can be used to study earthquake patterns and classify earthquake strength using global seismic data. The model analyzes spatial location and focal depth to identify patterns in earthquake energy release.
+
+This GeoAI project explores how machine learning and geospatial analysis can
+be used to study earthquake patterns and classify earthquake strength using
+global seismic data. The model analyzes spatial location and focal depth to
+identify patterns in earthquake energy release.
+
 </p>
 
 </div>
@@ -160,44 +179,13 @@ This GeoAI project explores how machine learning and geospatial analysis can be 
 
 <div class="section">
 
-<h2>Magnitude Distribution</h2>
+<h2>Live Global Earthquake Map (USGS Data)</h2>
 
-<img src="magnitude_distribution.png">
-
-</div>
-
-
-
-<div class="section">
-
-<h2>Depth–Magnitude Seismic Profile</h2>
-
-<img src="depth_magnitude_profile.png">
-
-</div>
-
-
-
-<div class="section">
-
-<h2>Model Explainability (SHAP)</h2>
-
-<img src="shap_feature_importance.png">
-
-</div>
-
-
-
-<div class="section">
-
-<h2>Global Earthquake Classification Map</h2>
-
-<img src="earthquake_global_map.jpg">
+<div id="map"></div>
 
 <div class="legend">
 
 <p class="red">🔴 Strong Earthquake (Magnitude ≥ 6)</p>
-
 <p class="blue">🔵 Weak Earthquake (Magnitude < 6)</p>
 
 </div>
@@ -206,25 +194,40 @@ This GeoAI project explores how machine learning and geospatial analysis can be 
 
 
 
+<div class="section output">
+
+<h2>Model Outputs</h2>
+
+<img src="magnitude_distribution.png">
+<img src="depth_magnitude_profile.png">
+<img src="shap_feature_importance.png">
+
+</div>
+
+
+
 <div class="section">
 
-<h2>Project Repository</h2>
+<h2>Explore the Full Project</h2>
 
 <p>
-View the complete code, machine learning workflow, and geological analysis on GitHub.
+
+View the complete machine learning workflow, code, and geological
+interpretation on GitHub.
+
 </p>
+
+<div class="button">
 
 <a href="https://github.com/bikrantmishrageo2005/GeoAI-Earthquake-Strength-Classification">
 
-<button>View GitHub Project</button>
+View GitHub Project
 
 </a>
 
 </div>
 
-
 </div>
-
 
 
 <footer>
@@ -235,8 +238,59 @@ Created by Bikrant Kumar Mishra | GeoAI Research Portfolio
 
 </footer>
 
-
 </div>
+
+
+
+<script>
+
+/* MAP */
+
+var map = L.map('map').setView([20,0],2);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+maxZoom:18
+}).addTo(map);
+
+
+/* USGS EARTHQUAKE API */
+
+fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")
+
+.then(response => response.json())
+
+.then(data => {
+
+data.features.forEach(eq => {
+
+var coords = eq.geometry.coordinates;
+var mag = eq.properties.mag;
+var place = eq.properties.place;
+var time = new Date(eq.properties.time).toUTCString();
+
+var color = mag >= 6 ? "red" : "#00bfff";
+
+L.circleMarker([coords[1],coords[0]],{
+
+radius:6,
+color:color,
+fillOpacity:0.8
+
+}).addTo(map)
+
+.bindPopup(
+
+"<b>Location:</b> "+place+
+"<br><b>Magnitude:</b> "+mag+
+"<br><b>Date:</b> "+time
+
+);
+
+});
+
+});
+
+</script>
 
 </body>
 
