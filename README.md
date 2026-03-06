@@ -162,3 +162,23 @@ B.Sc. Geology
 Research Interests:
 
 GeoAI • Machine Learning • Seismology • Earth System Analysis
+
+---
+
+## 🌐 Live Interactive Project
+
+An interactive web page for this project is available here:
+
+<p align="center">
+
+<a href="https://bikrantmishrageo2005.github.io/GeoAI-Earthquake-Strength-Classification/">
+
+🔗 View Live Project Website
+
+</a>
+
+</p>
+
+This page displays the interactive GeoAI earthquake classification project, including global seismic data visualization and machine learning based earthquake strength analysis.
+
+---
